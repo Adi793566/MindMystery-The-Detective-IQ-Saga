@@ -1,0 +1,97 @@
+import React, { useState } from "react"; import { Button } from "@/components/ui/button"; import { Card, CardContent } from "@/components/ui/card"; import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"; import { BarChart2, BrainCircuit, SearchCheck, Eye, Puzzle, Fingerprint } from "lucide-react";
+
+const App = () => { const [progress, setProgress] = useState({ mission1: false, mission2: false, iq: false, emotional: false, logic: false, });
+
+const handleComplete = (section) => { setProgress((prev) => ({ ...prev, [section]: true })); };
+
+return ( <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-700 text-white p-6"> <h1 className="text-4xl font-bold mb-6 text-center">🕵️‍♂️ Detective IQ Academy</h1> <Tabs defaultValue="mission1" className="max-w-5xl mx-auto"> <TabsList className="flex justify-center gap-2 flex-wrap"> <TabsTrigger value="mission1"><Puzzle className="mr-2" /> Mission 1</TabsTrigger> <TabsTrigger value="mission2"><Eye className="mr-2" /> Mission 2</TabsTrigger> <TabsTrigger value="iq"><BrainCircuit className="mr-2" /> IQ Tests</TabsTrigger> <TabsTrigger value="emotional"><Fingerprint className="mr-2" /> EQ Games</TabsTrigger> <TabsTrigger value="logic"><BarChart2 className="mr-2" /> Logic Lab</TabsTrigger> </TabsList>
+
+<TabsContent value="mission1">
+      <Card className="bg-slate-800 rounded-2xl shadow-xl mt-4">
+        <CardContent className="p-6">
+          <h2 className="text-2xl font-semibold mb-2">🎻 The Vanishing Violin</h2>
+          <p className="mb-4">Unravel the mystery of the missing Stradivarius. Solve puzzles, find clues, and expose Maestro Mist!</p>
+          {progress.mission1 ? (
+            <p className="text-green-400">✅ Completed</p>
+          ) : (
+            <Button onClick={() => handleComplete("mission1")}>Start Mission</Button>
+          )}
+        </CardContent>
+      </Card>
+    </TabsContent>
+
+    <TabsContent value="mission2">
+      <Card className="bg-slate-800 rounded-2xl shadow-xl mt-4">
+        <CardContent className="p-6">
+          <h2 className="text-2xl font-semibold mb-2">👻 Ghost in the Code</h2>
+          <p className="mb-4">A hacker leaves no trace. Only an emoji. Decode and track down the digital villain: NotPhantom.</p>
+          {progress.mission2 ? (
+            <p className="text-green-400">✅ Completed</p>
+          ) : (
+            <Button onClick={() => handleComplete("mission2")}>Start Mission</Button>
+          )}
+        </CardContent>
+      </Card>
+    </TabsContent>
+
+    <TabsContent value="iq">
+      <Card className="bg-slate-800 rounded-2xl shadow-xl mt-4">
+        <CardContent className="p-6">
+          <h2 className="text-xl font-semibold mb-2">🧠 IQ Challenges</h2>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>Cut to Save (30 Levels)</li>
+            <li>Draw to Save (42 Levels)</li>
+            <li>Sequence Puzzle</li>
+            <li>Find the Odd One</li>
+          </ul>
+          {progress.iq ? (
+            <p className="text-green-400">✅ Completed</p>
+          ) : (
+            <Button className="mt-4" onClick={() => handleComplete("iq")}>Start IQ Test</Button>
+          )}
+        </CardContent>
+      </Card>
+    </TabsContent>
+
+    <TabsContent value="emotional">
+      <Card className="bg-slate-800 rounded-2xl shadow-xl mt-4">
+        <CardContent className="p-6">
+          <h2 className="text-xl font-semibold mb-2">💖 Emotional Intelligence</h2>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>Memorize Face (35 Levels)</li>
+            <li>Recognize Emotions</li>
+            <li>Interrogate (26 Levels)</li>
+          </ul>
+          {progress.emotional ? (
+            <p className="text-green-400">✅ Completed</p>
+          ) : (
+            <Button className="mt-4" onClick={() => handleComplete("emotional")}>Play EQ Games</Button>
+          )}
+        </CardContent>
+      </Card>
+    </TabsContent>
+
+    <TabsContent value="logic">
+      <Card className="bg-slate-800 rounded-2xl shadow-xl mt-4">
+        <CardContent className="p-6">
+          <h2 className="text-xl font-semibold mb-2">🧩 Logic Missions</h2>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>Detective Case (94 Levels)</li>
+            <li>Flashback Clues (69 Levels)</li>
+            <li>Car Park Puzzle (49 Levels)</li>
+          </ul>
+          {progress.logic ? (
+            <p className="text-green-400">✅ Completed</p>
+          ) : (
+            <Button className="mt-4" onClick={() => handleComplete("logic")}>Enter Logic Lab</Button>
+          )}
+        </CardContent>
+      </Card>
+    </TabsContent>
+  </Tabs>
+</div>
+
+); };
+
+export default App;
+
